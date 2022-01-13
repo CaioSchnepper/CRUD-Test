@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @CrossOrigin(origins = ["http://localhost:8081"])
@@ -23,14 +24,14 @@ class PersonService @Autowired constructor(
         )
 
     @PostMapping
-    fun create(@RequestBody person: Person): ResponseEntity<Person> = ResponseEntity(
+    fun create(@RequestBody @Valid person: Person): ResponseEntity<Person> = ResponseEntity(
         personRepository.save(Person(person.id, person.name, person.document))
             ?: throw IllegalArgumentException("Erro ao salvar pessoa"),
         HttpStatus.CREATED
     )
 
     @PutMapping("/{id}")
-    fun update(@PathVariable("id") id: String, @RequestBody newPerson: Person): ResponseEntity<Person> {
+    fun update(@PathVariable("id") id: String, @RequestBody @Valid newPerson: Person): ResponseEntity<Person> {
         val oldPerson = personRepository.findById(id).orElseThrow { IllegalArgumentException("Pessoa não encontrada") }
         return ResponseEntity(
             personRepository.save(oldPerson
