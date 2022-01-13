@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-title>Lista de Pessoas</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item class="button" *ngFor="let person of persons; let i = index" [class.active]="i == currentIndex"
+        (click)="setActivePerson(person, i)">
+        <mat-icon class="icon">account_circle</mat-icon>
+        {{ person.name }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <div>
+    <app-person-details [viewMode]="true" [currentPerson]="currentPerson"></app-person-details>
+  </div>
+</mat-card>

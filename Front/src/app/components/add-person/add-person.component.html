@@ -1,0 +1,28 @@
+<div>
+  <mat-card>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput [(ngModel)]="person.name" name="name" required type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Número do Documento</mat-label>
+          <input matInput [(ngModel)]="person.document" name="document" required type="number">
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button color="accent" (click)="savePerson()" *ngIf="!submitted" type="submit">Enviar</button>
+
+      <div *ngIf="buttonPressed && !valid">
+        <p class="message">Campos inválidos</p>
+      </div>
+
+      <div *ngIf="submitted">
+        <p class="message">Pessoa salva com sucesso</p>
+        <button mat-flat-button color="accent" class="button" (click)="newPerson()">Adicionar mais</button>
+        <button mat-flat-button color="warn" class="button" routerLink="/person">Voltar à lista</button>
+      </div>
+    </div>
+  </mat-card>
+</div>

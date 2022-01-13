@@ -1,0 +1,24 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.icon{
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+.title {
+    padding-right: 5em;
+}
+
+.button {
+    margin-right: 5em;
+    cursor: pointer;
+}
+
+.button-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.content-container {
+    margin: 1em;
+}

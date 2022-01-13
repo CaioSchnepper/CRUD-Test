@@ -1,0 +1,66 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentPerson.id">
+    <mat-divider></mat-divider>
+    <div class="header">
+      <mat-icon class="header-button">details</mat-icon>
+      <h3><strong>Detalhes</strong></h3>
+    </div>
+    <div>
+      <span><strong>Nome:</strong></span>
+      {{ currentPerson.name }}
+    </div>
+    <div>
+      <span><strong>Documento:</strong></span>
+      {{ currentPerson.document }}
+    </div>
+
+    <button mat-flat-button color="accent" routerLink="/person/{{ currentPerson.id }}" class="button">
+      Editar
+    </button>
+  </div>
+
+  <div *ngIf="!currentPerson">
+    <p>Clique em uma Pessoa</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <mat-card>
+    <div *ngIf="currentPerson.id" class="edit-form">
+      <form>
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput [(ngModel)]="currentPerson.name" name="name" type="text" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Número do Documento</mat-label>
+          <input matInput [(ngModel)]="currentPerson.document" name="document" type="number" required>
+        </mat-form-field>
+      </form>
+
+      <div>
+        <button mat-flat-button color="warn" (click)="deletePerson()" class="button">
+          Excluir
+        </button>
+
+        <button mat-flat-button color="accent" class="button" type="submit" (click)="updatePerson()">
+          Atualizar
+        </button>
+        <p class="message">{{ message }}</p>
+      </div>
+
+      <div *ngIf="buttonPressed && !valid">
+        <p class="message">Campos inválidos</p>
+      </div>
+
+      <div *ngIf="buttonPressed && valid && !personChanged">
+        <p class="message">Os dados da pessoa não foram alterados</p>
+      </div>
+
+    </div>
+
+    <div *ngIf="!currentPerson.id">
+      <p class="message">Impossível acessar essa pessoa</p>
+    </div>
+  </mat-card>
+</ng-template>

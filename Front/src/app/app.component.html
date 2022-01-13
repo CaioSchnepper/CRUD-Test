@@ -1,0 +1,18 @@
+<div class="container">
+  <mat-toolbar color="accent">
+    <mat-icon class="icon">person</mat-icon>
+    <span class="title">Cadastro de Pessoas - Caio Schnepper</span>
+    <div class="button-wrapper">
+      <mat-icon>people</mat-icon>
+      <button mat-flat-button color="accent" routerLink="person" class="button">Lista de Pessoas</button>
+    </div>
+    <div class="button-wrapper">
+      <mat-icon>add</mat-icon>
+      <button mat-flat-button color="accent" routerLink="add" class="button">Adicionar Pessoa</button>
+    </div>
+  </mat-toolbar>
+
+  <div class="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
